@@ -2,9 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Note;
-use App\Models\User;
-use Illuminate\Auth\Access\Response;
+use App\Models\{Note, User};
 
 class NotePolicy
 {
@@ -37,7 +35,7 @@ class NotePolicy
      */
     public function update(User $user, Note $note): bool
     {
-        //
+        return $user->id === $note->user_id;
     }
 
     /**
