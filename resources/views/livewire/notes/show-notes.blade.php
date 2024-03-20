@@ -22,6 +22,7 @@ new class extends Component {
 
 <div>
     <div class="space-y-2">
+        <x-action-message on="note-saved" />
         @if ($notes->isEmpty())
             <div class="text-center">
                 <p class="text-xl font-bold">No Notes yet</p>
@@ -32,7 +33,7 @@ new class extends Component {
         @else
             <x-button icon="pencil" class="mb-4" positive icon-right="plus" href="{{ route('notes.create') }}"
                 wire:navigate>Create Note</x-button>
-            <div class="grid grid-cols-3 gap-4 mt-12">
+            <div class="mt-12 grid grid-cols-3 gap-4">
                 @foreach ($notes as $note)
                     <x-card wire:key='{{ $note->id }}'>
                         <div class="flex justify-between">
@@ -47,7 +48,7 @@ new class extends Component {
                                 {{ Carbon::parse($note->send_date)->format('d/m/Y') }}
                             </div>
                         </div>
-                        <div class="flex items-end justify-between mt-4 space-x-1">
+                        <div class="mt-4 flex items-end justify-between space-x-1">
                             <p class="text-xs">Recipient: <span class="font-semibold">{{ $note->recipient }}</span></p>
                             <div>
                                 <x-button.circle icon="eye"></x-button.circle>
